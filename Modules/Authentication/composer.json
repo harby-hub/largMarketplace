@@ -1,0 +1,19 @@
+{
+    "name" : "modules/Authentication",
+    "description" : "",
+    "authors" : [ {
+        "name" : "mahmoud harby" ,
+        "email" : "mahmuod.sami.99@gmail.com"
+    } ] ,
+    "extra"       : {
+        "laravel" : {
+            "providers" : [ ] ,
+            "aliases"   : { }
+        }
+    },
+    "autoload"    : {
+        "psr-4" : {
+            "Modules\\Authentication\\" : ""
+        }
+    }
+}

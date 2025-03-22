@@ -1,0 +1,3 @@
+extend type Query{
+    me: userResponse @field( resolver: "Authentication@me" )
+}

@@ -1,0 +1,14 @@
+type Status {
+	code:	 Int	 !
+	check:	 Boolean !
+	message: String	 !
+}
+
+type payloadResponse {
+	status: Status
+}
+
+type payloadResults {
+	status: Status
+    query:  Query
+}

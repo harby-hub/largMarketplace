@@ -1,0 +1,22 @@
+type atomNamespaces {
+    models:        [ String ]
+    queries:       [ String ]
+    mutations:     [ String ]
+    subscriptions: [ String ]
+    types:         [ String ]
+    interfaces:    [ String ]
+    unions:        [ String ]
+    scalars:       [ String ]
+    directives:    [ String ]
+    validators:    [ String ]
+}
+type atomModule {
+    name:          String
+    alias:         String
+    description:   String
+    priority:      Int
+    keywords:    [ String ]
+    files:       [ String ]
+    requires:    [ String ]
+    providers:   [ String ]
+}

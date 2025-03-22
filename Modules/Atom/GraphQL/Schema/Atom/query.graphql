@@ -1,0 +1,5 @@
+extend type Query {
+    atomNamespaces: atomNamespacesResponse @field( resolver: "Atom@Namespaces" )
+    atomModule:     atomModuleResponse     @field( resolver: "Atom@Module"     )
+	atomHealth:     payloadResponse        @field( resolver: "Atom@Health"     )
+}

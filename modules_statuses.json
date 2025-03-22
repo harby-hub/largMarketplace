@@ -1,0 +1,8 @@
+{
+    "Atom"           : true ,
+    "Authentication" : true ,
+    "Delivering"     : true ,
+    "Administration" : true ,
+    "Tenancy"        : true ,
+    "Seller"         : true
+}

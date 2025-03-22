@@ -1,0 +1,29 @@
+type DeliveringDelegate {
+    id:     ID
+    name:   String
+    email:  String
+    active: String
+}
+
+type DeliveringDelegateResponse {
+    data:   DeliveringDelegate
+    status: Status
+}
+
+type DeliveringDelegateResults {
+    data:   DeliveringDelegate
+    query:  Query
+    status: Status
+}
+
+input DeliveringDelegateinputs @validator( class: "Delegate\\Search" ) {
+    id:     [ ID     ! ]
+    email:  [ String ! ]
+    name:   [ String ! ]
+    active:   Boolean
+}
+
+extend type Query {
+    DeliveringDelegate(  id: ID! @eq ): DeliveringDelegateResponse @field( resolver: "Delegate@Show" )
+    DeliveringDelegates( builder: DeliveringDelegateinputs ): [ DeliveringDelegate ! ] !  @paginate( builder: "Delegate@Index" defaultCount: 15 )
+}

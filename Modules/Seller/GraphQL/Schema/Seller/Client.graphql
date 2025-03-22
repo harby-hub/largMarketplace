@@ -1,0 +1,29 @@
+type SellerClient {
+    id:     ID
+    name:   String
+    email:  String
+    active: String
+}
+
+type SellerClientResponse {
+    data:   SellerClient
+    status: Status
+}
+
+type SellerClientResults {
+    data:   SellerClient
+    query:  Query
+    status: Status
+}
+
+input SellerClientinputs @validator( class: "Client\\Search" ) {
+    id:     [ ID     ! ]
+    email:  [ String ! ]
+    name:   [ String ! ]
+    active:   Boolean
+}
+
+extend type Query {
+    SellerClient(  id: ID! @eq ): SellerClientResponse @field( resolver: "Client@Show" )
+    SellerClients( builder: SellerClientinputs ): [ SellerClient ! ] !  @paginate( builder: "Client@Index" defaultCount: 15 )
+}

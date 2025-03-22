@@ -1,0 +1,13 @@
+input verifyPinCodeInput @validator( class: "PinCode\\verifyRequest" ) {
+	email: Email
+	code:  String !
+}
+
+input sendPinCodeInput @validator( class: "PinCode\\sendRequest" ) {
+	email: Email
+}
+
+extend type Mutation {
+	authenticationPincodeSend   ( data: sendPinCodeInput   ! @spread ) : payloadResponse ! @field( resolver: "PinCode@send"   )
+	authenticationPincodeVerify ( data: verifyPinCodeInput ! @spread ) : payloadResponse ! @field( resolver: "PinCode@Verify" )
+}

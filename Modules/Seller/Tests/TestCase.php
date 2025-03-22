@@ -1,0 +1,1 @@
+<?php namespace Modules\Seller\Tests; class TestCase extends \Modules\Atom\Tests\TestCase { }

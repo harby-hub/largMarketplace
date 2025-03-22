@@ -1,0 +1,95 @@
+{
+    "name": "harby/laramodulesgraphqlauth",
+    "type": "project",
+    "description": "The skeleton application for the Laravel framework with modules Structurel.",
+    "keywords": [
+        "laravel",
+        "framework",
+        "modules"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "*",
+        "laravel/framework": "^11.0",
+        "laravel/passport": "^12.3",
+        "laravel/tinker": "^2.10",
+        "nuwave/lighthouse": "^6.47",
+        "nwidart/laravel-modules": "^11.1",
+        "stancl/tenancy": "^3.8"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.5",
+        "phpunit/phpunit": "^10.1",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\": "Modules/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "clear",
+            "@ClearCache",
+            "@database",
+            "@phpunit"
+        ],
+        "artisan": "@php artisan",
+        "phpunit": "@artisan test",
+        "last": "composer require $(composer show -s --format=json | jq '.requires | keys | map(.+\" \") | add' -r) --with-all-dependencies",
+        "database": [
+            "@artisan migrate:fresh --seed",
+            "@passport"
+        ],
+        "ClearCache": [
+            "@artisan lighthouse:clear-cache",
+            "@artisan module:discover",
+            "@artisan optimize:clear"
+        ],
+        "passport": [
+            "@artisan passport:client --password --name Laravel-Password-Grant-Administration-Staff --provider Staff",
+            "@artisan passport:client --password --name Laravel-Password-Grant-Seller-Client        --provider Client",
+            "@artisan passport:client --password --name Laravel-Password-Grant-Delivering-Delegate --provider Delegate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php artisan passport:keys"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": false
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

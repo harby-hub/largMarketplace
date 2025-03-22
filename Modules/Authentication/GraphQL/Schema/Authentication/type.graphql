@@ -1,0 +1,67 @@
+type Token {
+    access_token:  String !
+    refresh_token: String !
+    expires_in:    Int    !
+    token_type:    String !
+}
+
+type authResults {
+    provider:       AuthenticationProviders !
+    authentication: User
+    token:          Token
+    status:         Status
+    query:          Query
+}
+
+type userResults {
+    provider:       AuthenticationProviders !
+    status:         Status
+    authentication: User
+    query:          Query
+}
+
+type userResponse {
+    provider:       AuthenticationProviders !
+    status:         Status
+    authentication: User
+}
+
+interface User {
+    id:            Int !
+    email:         Email
+    need_password: Boolean
+    active:        Boolean  !
+    updated_at:    DateTime !
+    created_at:    DateTime !
+    name:          Name
+}
+
+type Staff implements User {
+    id:            Int !
+    email:         Email
+    need_password: Boolean
+    active:        Boolean  !
+    updated_at:    DateTime !
+    created_at:    DateTime !
+    name:          Name
+}
+
+type Client implements User {
+    id:            Int !
+    email:         Email
+    need_password: Boolean
+    active:        Boolean  !
+    updated_at:    DateTime !
+    created_at:    DateTime !
+    name:          Name
+}
+
+type Delegate implements User {
+    id:            Int !
+    email:         Email
+    need_password: Boolean
+    active:        Boolean  !
+    updated_at:    DateTime !
+    created_at:    DateTime !
+    name:          Name
+}

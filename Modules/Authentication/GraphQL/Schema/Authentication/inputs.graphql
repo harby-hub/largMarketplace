@@ -1,0 +1,46 @@
+input accessTokenInput{
+    firebase_id: String @rules( apply: [ "required" , "nullable" , "max:191" ] )
+}
+
+input attempt{
+    email:    Email
+    password: String !
+}
+
+input loginInput @validator( class: "Authentication\\login" ) {
+    provider:         AuthenticationProviders!
+    attempt:          attempt !
+    accessTokenInput: accessTokenInput
+}
+
+input userInputs{
+    name:     Name
+    email:    Email
+    password: String
+}
+
+input registerInput @validator( class: "Authentication\\Register" ) {
+    provider:           AuthenticationProviders !
+    userInputs:         userInputs              !
+    verifyPinCodeInput: verifyPinCodeInput      !
+    accessTokenInput:   accessTokenInput
+}
+
+input refreshTokenInput {
+    provider:         AuthenticationProviders !
+    refresh_token:    String !
+    accessTokenInput: accessTokenInput
+}
+
+input resetPasswordInput{
+    provider:           AuthenticationProviders !
+    password:           String !
+    verifyPinCodeInput: verifyPinCodeInput !
+    accessTokenInput:   accessTokenInput
+}
+
+input updateInput {
+    name:     String
+    email:    String
+    password: String
+}

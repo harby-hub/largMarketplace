@@ -1,0 +1,29 @@
+type AdministrationStaff {
+    id:     ID
+    name:   String
+    email:  String
+    active: String
+}
+
+type AdministrationStaffResponse {
+    data:   AdministrationStaff
+    status: Status
+}
+
+type AdministrationStaffResults {
+    data:   AdministrationStaff
+    query:  Query
+    status: Status
+}
+
+input AdministrationStaffinputs @validator( class: "Staff\\Search" ) {
+    id:     [ ID     ! ]
+    email:  [ String ! ]
+    name:   [ String ! ]
+    active:   Boolean
+}
+
+extend type Query {
+    AdministrationStaff(  id: ID! @eq ): AdministrationStaffResponse @field( resolver: "Staff@Show" )
+    AdministrationStaffs( builder: AdministrationStaffinputs ): [ AdministrationStaff ! ] !  @paginate( builder: "Staff@Index" defaultCount: 15 )
+}

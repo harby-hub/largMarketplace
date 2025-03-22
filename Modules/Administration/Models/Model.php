@@ -1,0 +1,1 @@
+<?php namespace Modules\Administration\Models; abstract class Model extends \Modules\Atom\Models\Model { }

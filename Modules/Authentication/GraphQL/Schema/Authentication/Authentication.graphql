@@ -1,0 +1,9 @@
+extend type Mutation {
+	authenticationLogin         ( data: loginInput         ! @spread ) : authResults    @field( resolver: "Authentication@login"         )
+	authenticationRefreshToken  ( data: refreshTokenInput  ! @spread ) : authResults    @field( resolver: "Authentication@refreshToken"  )
+	authenticationRegister      ( data: registerInput      ! @spread ) : authResults    @field( resolver: "Authentication@register"      )
+	authenticationResetPassword ( data: resetPasswordInput ! @spread ) : payloadResults @field( resolver: "Authentication@resetPassword" )
+	authenticationLogout:                                                payloadResults @field( resolver: "Authentication@logout"        )
+
+	authenticationUpdate        ( data: updateInput        ! @spread ) : userResults    @field( resolver: "Authentication@update"        )
+}
