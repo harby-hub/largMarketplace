@@ -41,8 +41,7 @@ class ServiceProvider extends \Modules\Atom\Providers\BaseServiceProvider {
         ] ) ;
     }
 
-    public function events()
-    {
+    public function events( ) {
         return [
             // Tenant events
             Events\CreatingTenant::class => [],
@@ -50,6 +49,7 @@ class ServiceProvider extends \Modules\Atom\Providers\BaseServiceProvider {
                 JobPipeline::make([
                     Jobs\CreateDatabase::class,
                     Jobs\MigrateDatabase::class,
+                    \Modules\Tenancy\Jobs\CreatePassPortClient::class,
                     // Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.

@@ -1,5 +1,5 @@
 {
-    "name": "harby/laramodulesgraphqlauth",
+    "name": "harby/largmarketplace",
     "type": "project",
     "description": "The skeleton application for the Laravel framework with modules Structurel.",
     "keywords": [
@@ -40,25 +40,18 @@
         "test": [
             "clear",
             "@ClearCache",
-            "@database",
             "@phpunit"
         ],
         "artisan": "@php artisan",
         "phpunit": "@artisan test",
         "last": "composer require $(composer show -s --format=json | jq '.requires | keys | map(.+\" \") | add' -r) --with-all-dependencies",
         "database": [
-            "@artisan migrate:fresh --seed",
-            "@passport"
+            "@artisan migrate:fresh --seed"
         ],
         "ClearCache": [
             "@artisan lighthouse:clear-cache",
             "@artisan module:discover",
             "@artisan optimize:clear"
-        ],
-        "passport": [
-            "@artisan passport:client --password --name Laravel-Password-Grant-Administration-Staff --provider Staff",
-            "@artisan passport:client --password --name Laravel-Password-Grant-Seller-Client        --provider Client",
-            "@artisan passport:client --password --name Laravel-Password-Grant-Delivering-Delegate --provider Delegate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
